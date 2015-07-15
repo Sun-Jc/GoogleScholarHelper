@@ -9,7 +9,7 @@ import urllib2,re,os,time
 
 # find the address of hosts file from pageUrl with specific Regex
 pageUrl = "http://laod.cn//hosts//2015-google-hosts.html"
-regex = r"http://laod.cn/wp-content/uploads/.*.txt"
+regex = r'''(下载.*)(?<=href=")(http://laod.cn/wp-content/uploads/.*?.txt)(?=">)'''
 timeLimit = 5
 
 def nowToStr():
@@ -58,8 +58,8 @@ def main():
 		print 'Target Found\n'
 		matchedAddress = re.search(regex,pageContent)
 		#download new hosts
-		print "Downloading from ",matchedAddress.group(0),'\n'
-		hostsContent = fetchTxt(matchedAddress.group(0))
+		print "Downloading from ",matchedAddress.group(2),'\n'
+		hostsContent = fetchTxt(matchedAddress.group(2))
 		#backup
 		writeFile(newpath,readFile(hostspath)) 
 		#build new hosts
