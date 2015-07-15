@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # @Author SunJc
-# @Date 2015-06
+# @Date 2015-07
 # only helps to access Google Scholar in Chengdu
 # very vulnerable now, expected to be outdated in Dec. 2015
 # thanks to 'laod.cn'!
