@@ -5,7 +5,9 @@
 # very vulnerable now, expected to be outdated in Dec. 2015
 # thanks to 'laod.cn'!
 
-import urllib2,re,os,time
+import urllib2,re,os,time,platform
+
+osx = platform.platform().startswith('Darwin')
 
 # find the address of hosts file from pageUrl with specific Regex
 pageUrl = "http://laod.cn//hosts//2015-google-hosts.html"
@@ -17,8 +19,13 @@ def nowToStr():
 	timeArray = time.localtime(now)
 	return time.strftime("-%Y-%m-%d-%H-%M-%S", timeArray)
 # backup the older hosts file with filename of 'hosts-YY-MM-HH-MM-SS.txt'
-newpath = ur"C:/Windows/System32/drivers/etc/hosts"+ nowToStr() +'.txt'
-hostspath = ur'C:/Windows/System32/drivers/etc/hosts'
+
+if osx:
+	newpath = ur"/etc/hosts"+ nowToStr() +'.txt'
+	hostspath = ur'/etc/hosts'
+else:
+	newpath = ur"C:/Windows/System32/drivers/etc/hosts"+ nowToStr() +'.txt'
+	hostspath = ur'C:/Windows/System32/drivers/etc/hosts'
 
 def echoWelcome():
 	os.system('cls') 
@@ -70,7 +77,8 @@ def main():
 		print str(e)+'\n'
 		echoError()
 		
-	os.system('pause')
+	if 'false'==osx:
+		os.system('pause')
 
 if __name__ == "__main__":
 	main()
