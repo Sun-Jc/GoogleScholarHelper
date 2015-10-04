@@ -1,9 +1,10 @@
+# -*- coding:utf-8 -*-
+
 # expired: http://laod.cn/journal/google-hosts-share-strategies.html
 # please go to hosts provider's website
 # thank LAOD.CN very much!
 # appologies if cause any inconvenience to you
 
-# -*- coding:utf-8 -*-
 # @Author SunJc
 # @Date 2015-07
 # only helps to access Google Scholar in Chengdu
