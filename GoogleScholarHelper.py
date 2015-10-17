@@ -17,7 +17,7 @@ osx = platform.platform().startswith('Darwin')
 
 # find the address of hosts file from pageUrl with specific Regex
 pageUrl = "http://laod.cn//hosts//2015-google-hosts.html"
-regex = r'''(下载.*)(?<=href=")(http://laod.cn/wp-content/uploads/.*?.txt)(?=">)'''
+regex = r'''(下载.*)(?<=href=")(http://laod.cn/wp-content/uploads/.*?.txt)(?=" target="_blank">)'''
 timeLimit = 5
 
 def nowToStr():
@@ -34,7 +34,10 @@ else:
 	hostspath = ur'C:/Windows/System32/drivers/etc/hosts'
 
 def echoWelcome():
-	os.system('cls') 
+	if osx:
+		os.system('clear')
+	else:
+		os.system('cls') 
 	print '''Google Scholar Helper
 			\nTHANKS to "laod.cn" !
 			\nThis will take a minute and won't delete or upload any file from your computer
@@ -69,6 +72,9 @@ def main():
 		print 'Fetching from ',pageUrl,'\n'
 		pageContent = fetchTxt(pageUrl)
 		print 'Target Found\n'
+
+		writeFile('pc.txt',pageContent)
+
 		matchedAddress = re.search(regex,pageContent)
 		#download new hosts
 		print "Downloading from ",matchedAddress.group(2),'\n'
